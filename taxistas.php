@@ -362,7 +362,7 @@
 			});
 		}
      </script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlZpyBcnr9FHT0tcqJv1VJ_1oD6q9sTaE&callback=initMap"
+     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap"
     async defer></script>
     </body>
 </html>
