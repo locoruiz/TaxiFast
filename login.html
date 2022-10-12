@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- este es un comentario -->
+        <title>Taxi Fast</title>
+        <meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <script src="../jquery-3.0.0.js"></script>
+        <link rel="stylesheet" href="../estilo/principal.css"/>
+        <style type="text/css">
+        .cont{
+            border-radius: 10px;
+            background-color: rgb(250, 250, 250);
+            box-shadow: 3px 3px 3px grey;
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+        }
+        </style>
+    </head>
+    <body style="text-align:center;">
+        <h1>Taxi Fast</h1>
+        <img src="img/logo.jpg" width="100px" height="100px" alt="">
+        <p style="margin:10px;">Bienvenido al portal de administración de Taxis, ingrese su usuario y contraseña para continuar</p>
+        <div class="cont">
+            <h3>Iniciar Sesión</h3>
+            <table style="margin:auto">
+            <tr><td>Usuario:</td> <td><input type="text" name="usuario" id="txtUsuario" /></td></tr>
+            <tr><td>Password:</td><td> <input type="password" name="password" id="txtPassword" /></td></tr>
+            </table>
+            <button onclick="entrar()">Entrar</button>
+            <p style="font-size:12px;"><b>Nota: </b>El usuario y password le fueron dados por el desarrollador, si no los recuerda no dude en contactar a RoscoSoft.</p>
+        </div>
+
+
+        <script type="text/javascript">
+
+        function entrar(){
+            var usu = document.getElementById("txtUsuario");
+            var pass = document.getElementById("txtPassword");
+            $.post("login.php", 
+                {
+                    usuario:usu.value,
+                    password:pass.value
+                }, 
+                function(data, status){
+                    if (status == "success") {
+                        data = JSON.parse(data);
+                        if(data.success == 1){
+                            window.location.replace("main.php");
+                        }else{
+                            usu.value="";
+                            pass.value="";
+                            usu.focus();
+                            alert(data.mensaje);
+                        }
+                    };
+                });
+        }
+        </script>
+    </body>
+</html>
